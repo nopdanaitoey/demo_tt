@@ -50,6 +50,7 @@ var app = builder.Build();
 // {
 
 app.UseSwagger();
+
 app.UseSwaggerUI();
 using var scope = app.Services.CreateScope();
 var dataContext = scope.ServiceProvider.GetRequiredService<DataBaseContext>();
