@@ -11,7 +11,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: TestTT
-  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
+  AZURE_WEBAPP_PACKAGE_PATH: "."
 
 jobs:
   publish:
@@ -32,7 +32,7 @@ jobs:
         run: dotnet build ./DemoTT.sln --configuration Release --no-restore
         
       - name: Publish
-        run: dotnet publish ./DemoTT.sln --configuration Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+        run: dotnet publish ./DemoTT.sln --configuration Release --no-build --output '${{ Build.ArtifactStagingDirectory}}'
         
       - name: Deployment
         uses: azure/webapps-deploy@v2
