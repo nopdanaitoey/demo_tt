@@ -26,19 +26,15 @@ builder.Services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof
 
 var connection = String.Empty;
 var redis = String.Empty;
-if (builder.Environment.IsDevelopment())
-{
-    builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
-    connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
-    redis = builder.Configuration.GetConnectionString("REDIS_CONNECTIONSTRING");
 
-}
-else
-{
-    builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.json");
-    connection = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
-    redis = Environment.GetEnvironmentVariable("REDIS_CONNECTIONSTRING");
-}
+IConfigurationRoot appsettings = new ConfigurationBuilder()
+         .SetBasePath(Directory.GetCurrentDirectory())
+         .AddJsonFile("appsettings.json")
+         .Build();
+connection = appsettings.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+
+redis = appsettings.GetConnectionString("REDIS_CONNECTIONSTRING");
+
 
 
 builder.Services.AddDbContext<DataBaseContext>(options =>
