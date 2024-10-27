@@ -30,7 +30,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ee7f117524cb4451b76175aa7b8ba693 }}/nopdanaitoey/test:${{ github.sha }}
+          platforms: linux/amd64,linux/arm64,linux/arm
+          # tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ee7f117524cb4451b76175aa7b8ba693 }}/nopdanaitoey/test:${{ github.sha }}
+          tags: nopdanaitoey/test:${{ github.sha }}
           file: ./Dockerfile
 
   deploy:
