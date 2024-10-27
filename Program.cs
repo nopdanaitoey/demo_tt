@@ -40,6 +40,7 @@ else
     redis = Environment.GetEnvironmentVariable("REDIS_CONNECTIONSTRING");
 }
 
+
 builder.Services.AddDbContext<DataBaseContext>(options =>
     options.UseSqlServer(connection));
 builder.Services.AddSingleton<IConnectionMultiplexer>(x => ConnectionMultiplexer.Connect(redis!.ToString()));
