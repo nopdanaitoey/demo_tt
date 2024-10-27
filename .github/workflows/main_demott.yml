@@ -10,12 +10,12 @@ on:
     - main
 
 env:
-  AZURE_WEBAPP_NAME: DemoTT
+  AZURE_WEBAPP_NAME: TestTT
   AZURE_WEBAPP_PACKAGE_PATH: "."
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v4
