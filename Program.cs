@@ -35,6 +35,7 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
+    builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.json");
     connection = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
     redis = Environment.GetEnvironmentVariable("REDIS_CONNECTIONSTRING");
 }
